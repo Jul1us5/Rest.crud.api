@@ -14,6 +14,8 @@ app.use(bodyParser.json())
 // Configuring the database
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/easy-notes', { useNewUrlParser: true, useUnifiedTopology: true });
+// const client = new MongoClient(url, {useUnifiedTopology: true});
 
 mongoose.Promise = global.Promise;
 
@@ -29,8 +31,11 @@ mongoose.connect(dbConfig.url, {
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+    res.json({"message": "Welcome to EasyNotes application! Take notes quickly. Organize and keep track of all your notes."});
 });
+
+// Require Notes routes
+require('./app/routes/note.routes.js')(app);
 
 // listen for requests
 app.listen(3000, () => {
