@@ -14,7 +14,6 @@ app.use(bodyParser.json())
 // Configuring the database
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/easy-notes', { useNewUrlParser: true, useUnifiedTopology: true });
 // const client = new MongoClient(url, {useUnifiedTopology: true});
 
 mongoose.Promise = global.Promise;
